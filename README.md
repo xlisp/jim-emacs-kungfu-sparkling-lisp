@@ -1,4 +1,4 @@
-# jim-emacs-fun-spark-lisp
+# jim-emacs-fun-sparkling-lisp
 
 ### flambo: spark streaming
 ```clojure
