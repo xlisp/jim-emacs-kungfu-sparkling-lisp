@@ -1,4 +1,4 @@
-# Clojure Sparkling & statistics, machine learning list
+# Clojure Sparkling & statistics, machine learning
 
 ### Spark context
 ```clojure
