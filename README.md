@@ -53,9 +53,57 @@
     (conj! (transient []) (._1 t))
     (._2 t))))
 ```
-### 线性回归
+### 线性回归SGD
+```java
+public static StreamingLinearRegressionWithSGD linearRegressionodel(double [] args, int num, float size) {
+    StreamingLinearRegressionWithSGD model = new StreamingLinearRegressionWithSGD()
+        .setStepSize(size)
+        .setNumIterations(num)
+        .setInitialWeights(Vectors.dense(args));
+    return model;
+}
+public static LabeledPoint labeledPoint(double label, double [] args) {
+    LabeledPoint point = new LabeledPoint(label, Vectors.dense(args));
+    return point;
+}
+```
 ```clojure
+(def model (VectorClojure/linearRegressionodel (double-array (repeat 100 0.0)) 1 0.01))
+(def labeled-stream
+  (spark/map
+   (fn [record]
+     (let [split (clojure.string/split record #"\t")
+           y (Double/parseDouble (nth split 0))
+           features (-> (nth split 1) (clojure.string/split #",") ((fn [fs] (map #(Double/parseDouble %) fs))) double-array)]
+       (VectorClojure/labeledPoint y features))) stream))
+(do
+  (.trainOn model labeled-stream)
+  (.print
+   (.predictOnValues
+    model
+    (spark/map-to-pair
+     (fn [lp]
+       (spark/tuple (.label lp) (.features lp)))
+     labeled-stream)))
+  (do ... start ...))
 ```
 ### 贝叶斯
+```java
+public static Vector tftransform(HashingTF tf, String data) {
+    Vector tfres = tf.transform(Arrays.asList(data.split(" ")));
+    return tfres;
+}
+```
 ```clojure
+(let [spam (spark/text-file context "files/spam.txt")
+      ham (spark/text-file context "files/ham.txt")
+      tf (HashingTF. 100)
+      spam-features (spark/map (fn [x] (VectorClojure/tftransform tf x)) spam)
+      ham-features (spark/map (fn [x] (VectorClojure/tftransform tf x)) ham)
+      positive-examples (spark/map (fn [x] (LabeledPoint. 1 x)) spam-features)
+      negative-examples (spark/map (fn [x] (LabeledPoint. 0 x)) ham-features)
+      training-data (spark/union (.rdd positive-examples) (.rdd negative-examples))
+      model (NaiveBayes/train training-data 1.0)
+      predict (fn [x] (.predict model (VectorClojure/tftransform tf x)))]
+  (do ... ))
 ```
