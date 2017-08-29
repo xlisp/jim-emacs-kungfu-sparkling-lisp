@@ -107,3 +107,26 @@ public static Vector tftransform(HashingTF tf, String data) {
       predict (fn [x] (.predict model (VectorClojure/tftransform tf x)))]
   (do ... ))
 ```
+### ALS交替最小二乘法的协同过滤算法--推荐引擎学习
+```clojure
+(defn to-mllib-rdd [rdd]
+  (.rdd rdd))
+(defn alternating-least-squares [data {:keys [rank num-iter lambda]}]
+  (ALS/train (to-mllib-rdd data) rank num-iter lambda 10))
+(defn parse-ratings [sc]
+  (->> (spark/text-file sc "resources/data/ml-100k/ua.base")
+       (spark/map-to-pair parse-rating)))
+(defn training-ratings [ratings]
+  (->> ratings
+       (spark/filter (fn [tuple]
+                       (< (s-de/key tuple) 8)))
+       (spark/values)))
+
+(let [options {:rank 10
+               :num-iter 10
+               :lambda 1.0}
+      model (-> (parse-ratings sc)
+                (training-ratings)
+                (alternating-least-squares options))]
+  (into [] (.recommendProducts model 1 3)))
+```
