@@ -129,4 +129,11 @@ public static Vector tftransform(HashingTF tf, String data) {
                 (training-ratings)
                 (alternating-least-squares options))]
   (into [] (.recommendProducts model 1 3)))
+
+(.predict model 789 123) ;; 预测用户789,对电影123的评分 ;;=> 2.401917277364834
+
+(into [] (.recommendProducts model 789 5)) ;;=> 给用户789,推荐5个电影
+;; Rating(789,814,3.7114404312220763)
+;; Rating(789,1500,3.642514446544692) ... 
+;; Rating(789,1449,3.484917824309928)
 ```
