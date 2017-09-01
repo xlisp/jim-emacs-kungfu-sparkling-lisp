@@ -1,6 +1,4 @@
-
-
-
+# Clojure Sparkling & statistics, machine learning
 
 - [Clojure Sparkling & statistics, machine learning](#clojure-sparkling--statistics-machine-learning)
     - [Spark context](#spark-context)
@@ -13,10 +11,6 @@
     - [线性回归SGD](#%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92sgd)
     - [贝叶斯](#%E8%B4%9D%E5%8F%B6%E6%96%AF)
     - [ALS交替最小二乘法的协同过滤算法--推荐引擎学习](#als%E4%BA%A4%E6%9B%BF%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E7%9A%84%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4%E7%AE%97%E6%B3%95--%E6%8E%A8%E8%8D%90%E5%BC%95%E6%93%8E%E5%AD%A6%E4%B9%A0)
-
-
-
-# Clojure Sparkling & statistics, machine learning
 
 ### Spark context
 ```clojure
