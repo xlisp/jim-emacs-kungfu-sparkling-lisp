@@ -1,10 +1,10 @@
 
-# Clojure Sparkling & statistics, machine learning
+# Clojure Sparkling & statistics, machine learning, kungfu
 * 一个打十几个人, 甚至都拿刀的高手，分类处理。打败弱的对手先，最后打最强的高手，必须先听桥每个对手的弱点 ，中线在哪里，怎样弱点才能打败他的中线
 
 
 
-- [Clojure Sparkling & statistics, machine learning](#clojure-sparkling--statistics-machine-learning)
+- [Clojure Sparkling & statistics, machine learning, kungfu](#clojure-sparkling--statistics-machine-learning-kungfu)
     - [Spark context](#spark-context)
     - [Spark Streaming context](#spark-streaming-context)
     - [Socket Text Stream](#socket-text-stream)
