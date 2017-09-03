@@ -1,4 +1,6 @@
 # Clojure Sparkling & statistics, machine learning
+* 一个打十几个人, 甚至都拿刀的高手，分类处理。打败弱的对手先，最后打最强的高手，必须先听桥每个对手的弱点 ，中线在哪里，怎样弱点才能打败他的中线
+
 
 - [Clojure Sparkling & statistics, machine learning](#clojure-sparkling--statistics-machine-learning)
     - [Spark context](#spark-context)
@@ -148,4 +150,25 @@ public static Vector tftransform(HashingTF tf, String data) {
 ;; Rating(789,814,3.7114404312220763)
 ;; Rating(789,1500,3.642514446544692) ... 
 ;; Rating(789,1449,3.484917824309928)
+```
+### 随机模拟,随机树到随机森林和功夫的骗手，用骗手来知其真
+```clojure
+```
+### svm升维度，敌人分类，然后降维度
+```clojure
+```
+### 每一个攻防招式都是高阶函数
+```clojure
+```
+### 组合拳或者腿就是组合函数
+```clojure
+```
+### 能够和你黐手的朋友才是真正的朋友
+```clojure
+```
+### 一个打十几个人的能力，打一百万人的能力，从身边的人打起爸爸，妈妈，姐
+```clojure
+```
+### 一切都是功夫，一切都是高阶函数，皆可打出去 
+```clojure
 ```
