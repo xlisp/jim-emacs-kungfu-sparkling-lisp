@@ -182,3 +182,6 @@ public static Vector tftransform(HashingTF tf, String data) {
 ### 一切都是功夫，一切都是高阶函数，皆可打出去 
 ```clojure
 ```
+### 一对多个分布式对手，是分布式的数据源数据流，攻防的组合招式是数据流的管道
+```clojure
+```
