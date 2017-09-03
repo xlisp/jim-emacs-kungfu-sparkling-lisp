@@ -1,0 +1,265 @@
+commit 31592c2d4afb746ad767d3c9055e4d54795fff3f
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Fri Aug 25 23:06:40 2017 +0800
+
+    Update README.md
+
+commit 32d1b7bf1bf60f47bd4ff1832cf232b785cbfd6f
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Fri Aug 25 23:04:39 2017 +0800
+
+    ML with Spark 用的是 Spark 1.4
+
+commit b45d39f34b4e94c5d6a404be77fb7c27c9af5ee7
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Fri Aug 25 09:01:38 2017 +0800
+
+    Update README.md
+
+commit bc9e281d7aef4b801cc0d6819b4b674e37a6ab6e
+Author: chanshunli <chanshunli@gmail.com>
+Date:   Wed Aug 23 22:59:36 2017 +0800
+
+    clean code
+
+commit a9739719254937489c14a03c4335e444f70ab1e6
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Wed Aug 23 18:41:23 2017 +0800
+
+    okokokok 在线预测 贝叶斯
+
+commit 477c4bbbfcace953b95ddb405c84570b84e1ba08
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Wed Aug 23 17:55:54 2017 +0800
+
+    (@predict-log "bomb ones you people here") => 1.0
+
+commit 638ade49e2cd5158d91c244190a68b04eaa01241
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Wed Aug 23 16:04:30 2017 +0800
+
+    对比全部的数据，把数据变成只有一行那么多来对比
+
+commit 9d6789bc773629df88082906571a096971efdf8c
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Wed Aug 23 13:38:55 2017 +0800
+
+    将context取出给repl开发使用
+
+commit fca69b973bd29d70e2ce2e37d6c84ddc39ea080d
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Wed Aug 23 11:14:47 2017 +0800
+
+    Add java NaiveBayes.train
+
+commit 6983189811fafaee5c90d3231bed79da1049840a
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Tue Aug 22 17:42:33 2017 +0800
+
+    Failed to load implementation from: com.github.fommil.netlib.NativeRefBLAS
+
+commit 5509d9461becdcba597fef239a20694f778d822b
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Tue Aug 22 17:09:03 2017 +0800
+
+    1. VectorClojure/labeledPoint 只接受double数组
+    2. 大部分spark数据集都会.values .vec的方法转为简单数据集
+    3. sparkling最大的弱点是必须 spark/with-context sc 才能开发,不便于repl开发
+
+commit 9a564101029d416421c5221999585cc2aa9e1d5f
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Tue Aug 22 15:32:43 2017 +0800
+
+    不用flambo了,换成spark/with-context就好了
+
+commit f8a3aee7ea4c66fe9004cc0ccc4f916ece7300d9
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Tue Aug 22 14:54:12 2017 +0800
+
+    去除序列化闭包,测试失败
+
+commit 8321cffff4f5a60949226789a2c2d4ac2a1a1187
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Tue Aug 22 10:30:29 2017 +0800
+
+    (VectorClojure/tftransform tf "aa aaa 111")
+    #object[org.apache.spark.mllib.linalg.SparseVector 0x10401f5c "(100,[4,21,57],[1.0,1.0,1.0])"]
+
+commit 55b31aee43db1a498c644d661a3e54cbb4bd9cfb
+Merge: 80ce49a edd84e9
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Mon Aug 21 17:27:50 2017 +0800
+
+    Merge branch 'foreach_kafka_failed'
+    纯函数的好处: sparkling 和 flambo 混合 使用
+
+commit edd84e9b0b51c9307ea51dbffdde11e6485053e9
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Mon Aug 21 17:26:21 2017 +0800
+
+    clean code
+
+commit 42543d3d0cb303dfe73244f732b1481eac18ffd5
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Mon Aug 21 17:16:12 2017 +0800
+
+    rdd操作: sparkling 和 flambo可以共用 => 打破思维来走
+
+commit a2d2045693df4c20f504b1872af17373e3ca8059
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Mon Aug 21 17:07:26 2017 +0800
+
+    不能混合flambo来使用: stream不支持
+
+commit f89c2390a8b96be1073f6c89225950a745e9fe33
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Mon Aug 21 15:41:39 2017 +0800
+
+    17/08/21 15:41:22 WARN Utils: Error deserializing function (require clojure.lang.AFunction)
+    java.io.FileNotFoundException: Could not locate clojure/lang/AFunction__init.class or clojure/lang/AFunction.clj on classpath.
+
+commit a7ef330a2356922a3a3eb1352e2d14d7a9e256ca
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Mon Aug 21 14:07:56 2017 +0800
+
+    foreach 序列化fn失败
+
+commit 965b62cbd87a7fbe61c64a34a3532864eb679418
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Mon Aug 21 11:38:24 2017 +0800
+
+    sparkling + kafka => 基本技术选型
+
+commit 80ce49aa18d1c66bafd6b7c330b79cfa074c9cf5
+Author: chanshunli <chanshunli@gmail.com>
+Date:   Sat Aug 19 12:02:54 2017 +0800
+
+    LabeledPoint的意义
+
+commit 05d9e383d3a9b14b3518e226ca76a84aee779e76
+Author: chanshunli <chanshunli@gmail.com>
+Date:   Sat Aug 19 09:42:23 2017 +0800
+
+    _
+
+commit aa32deb59dd27cb9a9a481c2a96547792e41c1f4
+Author: chanshunli <chanshunli@gmail.com>
+Date:   Sat Aug 19 09:40:49 2017 +0800
+
+    update
+
+commit c9909a1fe77782240861fd0087877fba523bcc66
+Author: chanshunli <chanshunli@gmail.com>
+Date:   Sat Aug 19 09:38:45 2017 +0800
+
+    Update datas_hist.png
+
+commit eef1a0960f8ec4180e076aa8ee3fe84f358c87c3
+Author: chanshunli <chanshunli@gmail.com>
+Date:   Sat Aug 19 09:36:46 2017 +0800
+
+    正态分布随机模拟数据源hist + 查看打印不出来的log
+
+commit 4f067cf48496d2d9481ea1ba0682bbe6104af736
+Author: chanshunli <chanshunli@gmail.com>
+Date:   Sat Aug 19 01:39:52 2017 +0800
+
+    通过R数据可视化来分析, 了解哪一个算法才能解决问题, 利用已有包几行代码, 针对数据建预测模型
+
+commit d8d660ed9a2705843d9b7419632f8a0bbd8ba6a6
+Author: chanshunli <chanshunli@gmail.com>
+Date:   Sat Aug 19 01:36:07 2017 +0800
+
+    如果多模型同时训练和预测结果?
+
+commit e0e0a2405a40e82cf1c2f8ebf3a5274b2f1b2d68
+Author: chanshunli <chanshunli@gmail.com>
+Date:   Sat Aug 19 01:30:31 2017 +0800
+
+    增加注释: README.md
+
+commit 0022e644e544a1204962277a5fc1383354db0910
+Author: chanshunli <chanshunli@gmail.com>
+Date:   Sat Aug 19 01:17:29 2017 +0800
+
+    Update
+
+commit 575f0b70d686d963b09073e852f9734a30c76d25
+Author: chanshunli <chanshunli@gmail.com>
+Date:   Sat Aug 19 01:15:30 2017 +0800
+
+     *SGD 是在线学习模型算法: 贝叶斯SGD, *分类算法SGD
+
+commit c9943bbca842ad832d4332274f8b71381e263b4c
+Author: chanshunli <chanshunli@gmail.com>
+Date:   Sat Aug 19 01:11:26 2017 +0800
+
+    最引人入目的放最前面
+
+commit 4e04a430369688c4043185cdf1ae6f2b838f3c83
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Fri Aug 18 21:31:29 2017 +0800
+
+    Update README.md
+
+commit 60f0612f18cbd57dcf71744681fbdb9a5da9054f
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Fri Aug 18 21:27:20 2017 +0800
+
+    Update README.md
+
+commit 80408548cc7934f265739eee66fc86d60ddbad19
+Merge: 47c4cfc 7b50558
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Fri Aug 18 21:23:26 2017 +0800
+
+    Merge branch 'master' of https://github.com/clojure-spark/sparkling-16-ml
+
+commit 47c4cfc9653e9984df6848176bf9085852aecf9a
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Fri Aug 18 21:23:04 2017 +0800
+
+    终于成功Clojure重写了: SimpleStreamingModel
+
+commit 7b5055895171241a88157bb0e86f52b1233e12cb
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Fri Aug 18 20:56:18 2017 +0800
+
+    Update README.md
+
+commit 77d1dda4715f2f2292847651cbd3326e1d677616
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Fri Aug 18 19:03:08 2017 +0800
+
+    Update README.md
+
+commit ad7829ed1b58d1022bba47b5985a93bd4392a78a
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Fri Aug 18 18:59:25 2017 +0800
+
+    Update README.md
+
+commit fa50f52e98dbc61cf5f03755259ed5f712d5fdaf
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Fri Aug 18 18:51:11 2017 +0800
+
+    接收StreamingModelProducer的消息ok
+
+commit aa9499cca912a4d74a06e50f9df59572428a8420
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Fri Aug 18 18:28:09 2017 +0800
+
+    Sparkling 1.2.3 + Spark 2.10 ~ 1.6.0
+
+commit 2fd586d4c31becc9656cbc8d8b8c66b15d65bce7
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Fri Aug 18 18:05:24 2017 +0800
+
+     (VectorClojure/linearRegressionodel (double-array [1, 2, 3]) 1 0.01)
+    #object[org.apache.spark.mllib.regression.StreamingLinearRegressionWithSGD 0x42286f84 "org.apache.spark.mllib.regression.StreamingLinearRegressionWithSGD@42286f84"]
+
+commit 44b82b52133e66d384d597473a87b3c2577ee1bd
+Author: Steve Chan <chanshunli@gmail.com>
+Date:   Fri Aug 18 17:48:01 2017 +0800
+
+    init
