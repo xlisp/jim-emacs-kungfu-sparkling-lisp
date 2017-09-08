@@ -42,6 +42,70 @@
 ```clojure
 (def socket-stream (.socketTextStream streaming-context "localhost" 9999))
 ```
+### Spark的闭包的处理是关键,Clojure与Spark互操作的关键: 函数的序列化
+* Sparkling的数据流操作都必须在with-context下,否则会报序列化的错误
+* 而且Spark版本的问题也可能导致序列化和闭包的错误
+```java
+import clojure.lang.IFn;
+public class Function2 extends sparkling.serialization.AbstractSerializableWrappedIFn implements org.apache.spark.api.java.function.Function2, org.apache.spark.sql.api.java.UDF2 {
+    public Function2(IFn func) {
+        super(func);
+    }
+    public Object call(Object v1, Object v2) throws Exception {
+    return f.invoke(v1, v2);
+  }
+}
+```
+```clojure
+(gen-function Function function)
+(gen-function Function2 function2)
+(gen-function Function3 function3)
+(gen-function VoidFunction void-function)
+(gen-function FlatMapFunction flat-map-function)
+(gen-function FlatMapFunction2 flat-map-function2)
+(gen-function PairFlatMapFunction pair-flat-map-function)
+(gen-function PairFunction pair-function)
+```
+```clojure
+(defn foreach-rdd [dstream f]
+  (.foreachRDD dstream (function2 f)))
+(foreach-rdd
+ stream
+ (fn [rdd arg2] ...))
+```
+### 函数式操作的核心,SICP的原力爆发: map reduce
+```clojure
+(defn map
+  [f rdd]
+  (-> (.map rdd (function f))
+      (u/set-auto-name (u/unmangle-fn f))))
+(defn map-to-pair
+  [f rdd]
+  (-> (.mapToPair rdd (pair-function f))
+      (u/set-auto-name (u/unmangle-fn f))))
+(defn reduce
+  [f rdd]
+  (u/set-auto-name (.reduce rdd (function2 f)) (u/unmangle-fn f)))
+(defn foreach-partition
+  [f rdd]
+  (.foreachPartition rdd (void-function (comp f iterator-seq))))
+(defn partition-by
+  [^Partitioner partitioner ^JavaPairRDD rdd]
+  (.partitionBy rdd partitioner))
+```
+### Clojure和Scala的互操作: tuple and untuple
+```clojure
+(spark/map-to-pair
+ (fn [lp]
+   (spark/tuple (.label lp) (.features lp)))
+ labeled-stream)
+
+(defn untuple [^Tuple2 t]
+  (persistent!
+   (conj!
+    (conj! (transient []) (._1 t))
+    (._2 t))))
+```
 ### Stream hello-world print整个数据流
 ```clojure
 (defn -main
@@ -59,23 +123,23 @@
      ... ]
   (do ... ))
 ```
+### Spark SQL
+* TODOS: 改写4G数据记录的Spark查询
+```clojure
+(defn select
+  [cols data-frame]
+  (.select data-frame
+           (into-array cols)))
+(defn where
+  "call where by "
+  [expression data-frame]
+  (.where data-frame expression))
+
+```
 ### Foreach RDD
 ```clojure
 (defn foreach-rdd [dstream f]
   (.foreachRDD dstream (function2 f)))
-```
-### tuple and untuple
-```clojure
-(spark/map-to-pair
- (fn [lp]
-   (spark/tuple (.label lp) (.features lp)))
- labeled-stream)
-
-(defn untuple [^Tuple2 t]
-  (persistent!
-   (conj!
-    (conj! (transient []) (._1 t))
-    (._2 t))))
 ```
 ### 线性回归SGD
 ```java
