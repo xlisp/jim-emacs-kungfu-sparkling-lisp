@@ -2,14 +2,18 @@
 # Clojure Sparkling & statistics, machine learning, kungfu
 * 一个打十几个人, 甚至都拿刀的高手，分类处理。打败弱的对手先，最后打最强的高手，必须先听桥每个对手的弱点 ，中线在哪里，怎样弱点才能打败他的中线
 
+
 - [Clojure Sparkling & statistics, machine learning, kungfu](#clojure-sparkling--statistics-machine-learning-kungfu)
     - [Spark context](#spark-context)
     - [Spark Streaming context](#spark-streaming-context)
     - [Socket Text Stream](#socket-text-stream)
+    - [Spark的闭包的处理是关键,Clojure与Spark互操作的关键: 函数的序列化](#spark%E7%9A%84%E9%97%AD%E5%8C%85%E7%9A%84%E5%A4%84%E7%90%86%E6%98%AF%E5%85%B3%E9%94%AEclojure%E4%B8%8Espark%E4%BA%92%E6%93%8D%E4%BD%9C%E7%9A%84%E5%85%B3%E9%94%AE-%E5%87%BD%E6%95%B0%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96)
+    - [函数式操作的核心,SICP的原力爆发: map reduce](#%E5%87%BD%E6%95%B0%E5%BC%8F%E6%93%8D%E4%BD%9C%E7%9A%84%E6%A0%B8%E5%BF%83sicp%E7%9A%84%E5%8E%9F%E5%8A%9B%E7%88%86%E5%8F%91-map-reduce)
+    - [Clojure和Scala的互操作: tuple and untuple](#clojure%E5%92%8Cscala%E7%9A%84%E4%BA%92%E6%93%8D%E4%BD%9C-tuple-and-untuple)
     - [Stream hello-world print整个数据流](#stream-hello-world-print%E6%95%B4%E4%B8%AA%E6%95%B0%E6%8D%AE%E6%B5%81)
     - [Kafka Stream](#kafka-stream)
+    - [Spark SQL](#spark-sql)
     - [Foreach RDD](#foreach-rdd)
-    - [tuple and untuple](#tuple-and-untuple)
     - [线性回归SGD](#%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92sgd)
     - [贝叶斯](#%E8%B4%9D%E5%8F%B6%E6%96%AF)
     - [ALS交替最小二乘法的协同过滤算法--推荐引擎学习](#als%E4%BA%A4%E6%9B%BF%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95%E7%9A%84%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4%E7%AE%97%E6%B3%95--%E6%8E%A8%E8%8D%90%E5%BC%95%E6%93%8E%E5%AD%A6%E4%B9%A0)
@@ -26,7 +30,7 @@
     - [离开我中线，非中线向前，就可以出击 ，用黐手的打来提醒训练，发力错误，肘低发力 肩膀放松 归中三角形结构力 攻防才能奏效](#%E7%A6%BB%E5%BC%80%E6%88%91%E4%B8%AD%E7%BA%BF%E9%9D%9E%E4%B8%AD%E7%BA%BF%E5%90%91%E5%89%8D%E5%B0%B1%E5%8F%AF%E4%BB%A5%E5%87%BA%E5%87%BB-%E7%94%A8%E9%BB%90%E6%89%8B%E7%9A%84%E6%89%93%E6%9D%A5%E6%8F%90%E9%86%92%E8%AE%AD%E7%BB%83%E5%8F%91%E5%8A%9B%E9%94%99%E8%AF%AF%E8%82%98%E4%BD%8E%E5%8F%91%E5%8A%9B-%E8%82%A9%E8%86%80%E6%94%BE%E6%9D%BE-%E5%BD%92%E4%B8%AD%E4%B8%89%E8%A7%92%E5%BD%A2%E7%BB%93%E6%9E%84%E5%8A%9B-%E6%94%BB%E9%98%B2%E6%89%8D%E8%83%BD%E5%A5%8F%E6%95%88)
     - [离开我就打他，叫甩手直冲](#%E7%A6%BB%E5%BC%80%E6%88%91%E5%B0%B1%E6%89%93%E4%BB%96%E5%8F%AB%E7%94%A9%E6%89%8B%E7%9B%B4%E5%86%B2)
     - [来留去送 ，就像放风筝一样，顺着他的力 然后打他，如他向前较劲就拉打，他拉我就 我就撞打他](#%E6%9D%A5%E7%95%99%E5%8E%BB%E9%80%81-%E5%B0%B1%E5%83%8F%E6%94%BE%E9%A3%8E%E7%AD%9D%E4%B8%80%E6%A0%B7%E9%A1%BA%E7%9D%80%E4%BB%96%E7%9A%84%E5%8A%9B-%E7%84%B6%E5%90%8E%E6%89%93%E4%BB%96%E5%A6%82%E4%BB%96%E5%90%91%E5%89%8D%E8%BE%83%E5%8A%B2%E5%B0%B1%E6%8B%89%E6%89%93%E4%BB%96%E6%8B%89%E6%88%91%E5%B0%B1-%E6%88%91%E5%B0%B1%E6%92%9E%E6%89%93%E4%BB%96)
-
+    - [生活中的中线原理和埋肘原理，守中用中: 归中  和 连消带打 111 用在朋友和高人身上一样奏效，父母身上，创造咏春拳的人 ，才是绝世大师，中线原理](#%E7%94%9F%E6%B4%BB%E4%B8%AD%E7%9A%84%E4%B8%AD%E7%BA%BF%E5%8E%9F%E7%90%86%E5%92%8C%E5%9F%8B%E8%82%98%E5%8E%9F%E7%90%86%E5%AE%88%E4%B8%AD%E7%94%A8%E4%B8%AD-%E5%BD%92%E4%B8%AD--%E5%92%8C-%E8%BF%9E%E6%B6%88%E5%B8%A6%E6%89%93-111-%E7%94%A8%E5%9C%A8%E6%9C%8B%E5%8F%8B%E5%92%8C%E9%AB%98%E4%BA%BA%E8%BA%AB%E4%B8%8A%E4%B8%80%E6%A0%B7%E5%A5%8F%E6%95%88%E7%88%B6%E6%AF%8D%E8%BA%AB%E4%B8%8A%E5%88%9B%E9%80%A0%E5%92%8F%E6%98%A5%E6%8B%B3%E7%9A%84%E4%BA%BA-%E6%89%8D%E6%98%AF%E7%BB%9D%E4%B8%96%E5%A4%A7%E5%B8%88%E4%B8%AD%E7%BA%BF%E5%8E%9F%E7%90%86)
 
 
 ### Spark context
