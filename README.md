@@ -194,12 +194,7 @@ public static Vector tftransform(HashingTF tf, String data) {
 ```clojure
 (defn tftransform
   [tf x]
-  (.transform
-   tf
-   (-> x
-       (clojure.string/split #" ")
-       into-array
-       Arrays/asList)))
+  (.transform tf (-> x (clojure.string/split #" ") into-array Arrays/asList)))
 
 (let [spam (spark/text-file context "files/spam.txt")
       ham (spark/text-file context "files/ham.txt")
