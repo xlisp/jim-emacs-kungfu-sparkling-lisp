@@ -192,16 +192,25 @@ public static Vector tftransform(HashingTF tf, String data) {
 }
 ```
 ```clojure
+(defn tftransform
+  [tf x]
+  (.transform
+   tf
+   (-> x
+       (clojure.string/split #" ")
+       into-array
+       Arrays/asList)))
+
 (let [spam (spark/text-file context "files/spam.txt")
       ham (spark/text-file context "files/ham.txt")
       tf (HashingTF. 100)
-      spam-features (spark/map (fn [x] (VectorClojure/tftransform tf x)) spam)
-      ham-features (spark/map (fn [x] (VectorClojure/tftransform tf x)) ham)
+      spam-features (spark/map (fn [x] (tftransform tf x)) spam)
+      ham-features (spark/map (fn [x] (tftransform tf x)) ham)
       positive-examples (spark/map (fn [x] (LabeledPoint. 1 x)) spam-features)
       negative-examples (spark/map (fn [x] (LabeledPoint. 0 x)) ham-features)
       training-data (spark/union (.rdd positive-examples) (.rdd negative-examples))
       model (NaiveBayes/train training-data 1.0)
-      predict (fn [x] (.predict model (VectorClojure/tftransform tf x)))]
+      predict (fn [x] (.predict model (tftransform tf x)))]
   (do ... ))
 ```
 ### ALS交替最小二乘法的协同过滤算法--推荐引擎学习
