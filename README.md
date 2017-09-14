@@ -1,7 +1,7 @@
 
+
 # Clojure Sparkling & statistics, machine learning, kungfu
 * 一个打十几个人, 甚至都拿刀的高手，分类处理。打败弱的对手先，最后打最强的高手，必须先听桥每个对手的弱点 ，中线在哪里，怎样弱点才能打败他的中线
-
 
 - [Clojure Sparkling & statistics, machine learning, kungfu](#clojure-sparkling--statistics-machine-learning-kungfu)
     - [Spark context](#spark-context)
@@ -31,6 +31,12 @@
     - [离开我就打他，叫甩手直冲](#%E7%A6%BB%E5%BC%80%E6%88%91%E5%B0%B1%E6%89%93%E4%BB%96%E5%8F%AB%E7%94%A9%E6%89%8B%E7%9B%B4%E5%86%B2)
     - [来留去送 ，就像放风筝一样，顺着他的力 然后打他，如他向前较劲就拉打，他拉我就 我就撞打他](#%E6%9D%A5%E7%95%99%E5%8E%BB%E9%80%81-%E5%B0%B1%E5%83%8F%E6%94%BE%E9%A3%8E%E7%AD%9D%E4%B8%80%E6%A0%B7%E9%A1%BA%E7%9D%80%E4%BB%96%E7%9A%84%E5%8A%9B-%E7%84%B6%E5%90%8E%E6%89%93%E4%BB%96%E5%A6%82%E4%BB%96%E5%90%91%E5%89%8D%E8%BE%83%E5%8A%B2%E5%B0%B1%E6%8B%89%E6%89%93%E4%BB%96%E6%8B%89%E6%88%91%E5%B0%B1-%E6%88%91%E5%B0%B1%E6%92%9E%E6%89%93%E4%BB%96)
     - [生活中的中线原理和埋肘原理，守中用中: 归中  和 连消带打 111 用在朋友和高人身上一样奏效，父母身上，创造咏春拳的人 ，才是绝世大师，中线原理](#%E7%94%9F%E6%B4%BB%E4%B8%AD%E7%9A%84%E4%B8%AD%E7%BA%BF%E5%8E%9F%E7%90%86%E5%92%8C%E5%9F%8B%E8%82%98%E5%8E%9F%E7%90%86%E5%AE%88%E4%B8%AD%E7%94%A8%E4%B8%AD-%E5%BD%92%E4%B8%AD--%E5%92%8C-%E8%BF%9E%E6%B6%88%E5%B8%A6%E6%89%93-111-%E7%94%A8%E5%9C%A8%E6%9C%8B%E5%8F%8B%E5%92%8C%E9%AB%98%E4%BA%BA%E8%BA%AB%E4%B8%8A%E4%B8%80%E6%A0%B7%E5%A5%8F%E6%95%88%E7%88%B6%E6%AF%8D%E8%BA%AB%E4%B8%8A%E5%88%9B%E9%80%A0%E5%92%8F%E6%98%A5%E6%8B%B3%E7%9A%84%E4%BA%BA-%E6%89%8D%E6%98%AF%E7%BB%9D%E4%B8%96%E5%A4%A7%E5%B8%88%E4%B8%AD%E7%BA%BF%E5%8E%9F%E7%90%86)
+    - [近邻分类(KNN)](#%E8%BF%91%E9%82%BB%E5%88%86%E7%B1%BBknn)
+    - [朴素贝叶斯分类](#%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%88%86%E7%B1%BB)
+    - [决策树分类](#%E5%86%B3%E7%AD%96%E6%A0%91%E5%88%86%E7%B1%BB)
+    - [预测数值型数据: 广义回归方法](#%E9%A2%84%E6%B5%8B%E6%95%B0%E5%80%BC%E5%9E%8B%E6%95%B0%E6%8D%AE-%E5%B9%BF%E4%B9%89%E5%9B%9E%E5%BD%92%E6%96%B9%E6%B3%95)
+    - [神经网络和支持向量机](#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%92%8C%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA)
+    - [K均值聚类](#k%E5%9D%87%E5%80%BC%E8%81%9A%E7%B1%BB)
 
 
 ### Spark context
@@ -280,3 +286,23 @@ public static Vector tftransform(HashingTF tf, String data) {
 ### 生活中的中线原理和埋肘原理，守中用中: 归中  和 连消带打 111 用在朋友和高人身上一样奏效，父母身上，创造咏春拳的人 ，才是绝世大师，中线原理
 ```clojure
 ```
+
+### 近邻分类(KNN)
+```clojure
+```
+### 朴素贝叶斯分类
+```clojure
+```
+### 决策树分类
+```clojure
+```
+### 预测数值型数据: 广义回归方法
+```clojure
+```
+### 神经网络和支持向量机
+```clojure
+```
+### K均值聚类
+```clojure
+```
+
