@@ -59,7 +59,34 @@
 ```
 ### Spark 的矩阵计算(linalg+breeze)
 ```clojure
+(def vec (Vectors/dense (double-array (list 0.1 0.15 0.2 0.3 0.25))))
 
+(def mat (Matrices/dense 3 2 (double-array (list 1.0 3.0 5.0 2.0 4.0 6.0))))
+
+(def sm (Matrices/sparse 3 2 (int-array (list 0 1 3)) (int-array (list 0 2 1)) (double-array (list 9 6 8))))
+
+(def sv (Vectors/sparse 3 (int-array (list 0 2)) (double-array (list 1.0 3.0))))
+
+(def pos (LabeledPoint. 1.0 (Vectors/dense (double-array (list 1.0 0.0 3.0)))))
+
+(def mat-t (.transpose mat))
+
+(def mat-multiply (.multiply mat mat-t))
+;; => #object[org.apache.spark.mllib.linalg.DenseMatrix 0x63608adf "5.0   11.0  17.0  \n11.0  25.0  39.0  \n17.0  39.0  61.0  "]
+
+;; Distributed matrix
+(spark/with-context sc
+  (-> (conf/spark-conf)
+      (conf/master "local[*]")
+      (conf/app-name "Consumer"))
+  (let [data (Arrays/asList (into-array (list 1 2 3 4 5 6)))
+        rdd-dist-data (.parallelize sc data)
+        mat (RowMatrix. (.rdd rdd-dist-data))
+        mat2 (IndexedRowMatrix. (.rdd rdd-dist-data))
+        row-mat (.toRowMatrix mat2)]
+    ;;(list (.numRows mat) (.numCols mat))
+    (.numRows mat) ;;=> 6
+    ))
 ```
 ### Spark的闭包的处理是关键,Clojure与Spark互操作的关键: 函数的序列化
 * Sparkling的数据流操作都必须在with-context下,否则会报序列化的错误
