@@ -57,6 +57,10 @@
 ```clojure
 (def socket-stream (.socketTextStream streaming-context "localhost" 9999))
 ```
+### Spark 的矩阵计算(linalg+breeze)
+```clojure
+
+```
 ### Spark的闭包的处理是关键,Clojure与Spark互操作的关键: 函数的序列化
 * Sparkling的数据流操作都必须在with-context下,否则会报序列化的错误
 * 而且Spark版本的问题也可能导致序列化和闭包的错误
